@@ -11,14 +11,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           token: ${{ secrets.PAT }}
-      - run: |
-          echo $GITHUB_ACTION_REPOSITORY
-          echo $GITHUB_ACTOR
-          echo $GITHUB_BASE_REF
-          echo $GITHUB_HEAD_REF
-          echo $GITHUB_REF
-          echo $GITHUB_REF_NAME
-          echo $GITHUB_REPOSITORY
+      - uses: hmarr/debug-action@v2
       - name: Checkout PR branch
         uses: dawidd6/action-checkout-pr@v1
         with:
