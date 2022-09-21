@@ -1,0 +1,31 @@
+name: Validate PR
+on:
+  pull_request_target:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT }}
+      - run: |
+          echo $GITHUB_ACTION_REPOSITORY
+          echo $GITHUB_ACTOR
+          echo $GITHUB_BASE_REF
+          echo $GITHUB_HEAD_REF
+          echo $GITHUB_REF
+          echo $GITHUB_REF_NAME
+          echo $GITHUB_REPOSITORY
+      - name: Checkout PR branch
+        uses: dawidd6/action-checkout-pr@v1
+        with:
+          pr: ${{ github.event.number }}
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+        with:
+          ref: main
+          path: ./india-main
+          token: ${{ secrets.PAT }}
